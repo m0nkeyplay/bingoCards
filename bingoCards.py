@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+
+
+#   author:		https://github.com/m0nkeyplay
+#   August 18, 2020 - original script written
+#   Free to use
+#   Free to modify and make better
+
 import random
 import datetime
 
@@ -9,14 +16,23 @@ import datetime
 #   Varibles to chose from
 #########################################################
 #   How many cards do you want?
-cards = 100
+cards = 50
+
+#   Do you want a header for each card?
+#   We take images or Text
+#   Size matters - suggested sizes are here for you
+
+cardHeader = ' &nbsp; '
+#cardHeader = '<img src="image source" width="600" height="100"/>'
+
 #   What do you want for Free Space
 #   Images are fine.  I've found 100x100 works best
 
 freeSpace = '<img src="monkeyHead.jpg" width="100" height="100"/>'
 #freeSpace = 'FREE<br />SPACE' #Or Choose Write in Some Text
 
-pageStart = """<html><head>
+pageStart = """<html>
+<head>
 <style>
 table, th, td {
   border: 1px solid black;
@@ -37,6 +53,10 @@ td {
     height: 100px;
     width: 20%
 }
+h1 {
+    font-family: font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+}
 .pagebreak { page-break-after: always; }
 </style>
 </head>
@@ -46,55 +66,39 @@ td {
 pageEnd = "</body></html>"
 
 def make_card():
-    x = 1
     y = 1
+    listB = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    listI = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+    listN = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
+    listG = [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+    listO = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75]
     b = []
     i = []
     n = []
     g = []
     o = []
-    bb = []
-    ii = []
-    nn = []
-    gg = []
-    oo =[]
 
-    while x <= 15:
-        b.append(x)
-        x += 1
-    while x <= 30:
-        i.append(x)
-        x += 1
-    while x <= 45:
-        n.append(x)
-        x += 1
-    while x <= 60:
-        g.append(x)
-        x += 1
-    while x <= 75:
-        o.append(x)
-        x += 1
     while y <= 5:
-        random.shuffle(b)
-        random.shuffle(i)
-        random.shuffle(n)
-        random.shuffle(g)
-        random.shuffle(o)
-        bb.append(b.pop())
-        ii.append(i.pop())
-        nn.append(n.pop())
-        gg.append(g.pop())
-        oo.append(o.pop())
+        random.shuffle(listB)
+        random.shuffle(listI)
+        random.shuffle(listN)
+        random.shuffle(listG)
+        random.shuffle(listO)
+        b.append(listB.pop())
+        i.append(listI.pop())
+        n.append(listN.pop())
+        g.append(listG.pop())
+        o.append(listO.pop())
         y+=1
 
     card = """  <h1>&nbsp;</h1>
-                <h1>&nbsp;</h1>
-                <h1>&nbsp;</h1>
+                <h1>%s</h1>
                 <table>
                 <tr>
                 <th>B</th><th>I</th><th>N</th><th>G</th><th>O</th>
                 </tr>
-    """
+    """%cardHeader
+
     z = 0
     while z <= 4:
         if z == 2:
@@ -104,7 +108,7 @@ def make_card():
                         <td>%s</td>
                         <td>%s</td>
                         <td>%s</td>
-                        </tr>"""%(str(bb[z]),str(ii[z]),freeSpace,str(gg[z]),str(oo[z]))
+                        </tr>"""%(str(b[z]),str(i[z]),freeSpace,str(g[z]),str(o[z]))
         else:
             card += """<tr>
                         <td>%s</td>
@@ -112,7 +116,7 @@ def make_card():
                         <td>%s</td>
                         <td>%s</td>
                         <td>%s</td>
-                        </tr>"""%(str(bb[z]),str(ii[z]),str(nn[z]),str(gg[z]),str(oo[z]))
+                        </tr>"""%(str(b[z]),str(i[z]),str(n[z]),str(g[z]),str(o[z]))
         z+=1
 
     card += """</table>
